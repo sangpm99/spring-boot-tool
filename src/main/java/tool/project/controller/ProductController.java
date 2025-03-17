@@ -8,35 +8,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/Product")
 @CrossOrigin(origins = "*")  // Cho phép CORS
 public class ProductController {
     @Autowired
     private ProductService service;
 
-    @GetMapping
+    @GetMapping("/GetProducts")
     public List<Product> listAll() {
         return service.listAll();
     }
 
-    @GetMapping("/{id}")
-    public Product get(@PathVariable Long id) {
-        return service.get(id);
+    @GetMapping("/GetProduct/{productId}")
+    public Product get(@PathVariable Long productId) {
+        return service.get(productId);
     }
 
-    @PostMapping
+    @PostMapping("/CreateProduct")
     public Product create(@RequestBody Product product) {
         return service.save(product);
     }
 
-    @PutMapping("/{id}")
-    public Product update(@PathVariable Long id, @RequestBody Product product) {
-        product.setId(id);
+    @PutMapping("/UpdateProduct/{productId}")
+    public Product update(@PathVariable Long productId, @RequestBody Product product) {
+        product.setProductId(productId);
         return service.save(product);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        service.delete(id);
+    @DeleteMapping("DeleteProduct/{productId}")
+    public void delete(@PathVariable Long productId) {
+        service.delete(productId);
     }
 }

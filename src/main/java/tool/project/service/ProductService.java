@@ -1,4 +1,5 @@
 package tool.project.service;
+
 import tool.project.models.Product;
 import tool.project.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ public class ProductService {
     private ProductRepository repository;
 
     public List<Product> listAll() { return repository.findAll(); }
-    public Product get(Long id) { return repository.findById(id).orElse(null); }
+    public Product get(Long productId) { return repository.findById(productId).orElse(null); }
     public Product save(Product product) { return repository.save(product); }
-    public void delete(Long id) { repository.deleteById(id); }
+    public void delete(Long productId) { repository.deleteById(productId); }
 }
