@@ -18,12 +18,22 @@ public class ProductService {
     }
 
     public void createProducts(List<Product> products) {
-        for(Product product: products) {
-            productRepository.insertProducts(
-                List.of(product.getName()),
-                List.of(product.getPrice()),
-                List.of(product.getCategory().getId())
-            );
+        for (Product p : products) {
+            productRepository.save(p);
         }
+    }
+
+    public void updateProduct(Long id, Product updatedProduct) {
+        Product existingProduct = productRepository.findById(id).orElse(null);
+        if (existingProduct != null) {
+            existingProduct.setName(updatedProduct.getName());
+            existingProduct.setPrice(updatedProduct.getPrice());
+            existingProduct.setCategory(updatedProduct.getCategory());
+            productRepository.save(existingProduct);
+        }
+    }
+
+    public void deleteProducts(List<Long> ids) {
+        productRepository.deleteAllById(ids);
     }
 }
