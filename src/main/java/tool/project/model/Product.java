@@ -15,6 +15,7 @@ public class Product {
     private String sku;
 
     @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String name;
 
     private Integer published;
@@ -24,11 +25,11 @@ public class Product {
     private String visibilityInCatalog;
 
     @Lob
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String shortDescription;
 
     @Lob
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String description;
 
     @Column(nullable = true)
@@ -71,7 +72,7 @@ public class Product {
     private Integer allowCustomerReviews;
 
     @Lob
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String purchaseNote;
     
     @Column(nullable = true)
@@ -91,7 +92,7 @@ public class Product {
     private String shippingClass;
 
     @Lob
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String images;
 
     @Column(nullable = true)
@@ -112,7 +113,7 @@ public class Product {
     @Column(nullable = true)
     private String crossSells;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String externalUrl;
 
     @Column(nullable = true)
@@ -121,10 +122,10 @@ public class Product {
     @Column(nullable = true)
     private Integer position;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute1Name;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute1Value;
 
     @Column(nullable = true)
@@ -136,10 +137,10 @@ public class Product {
     @Column(nullable = true)
     private Integer attribute1Default;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute2Name;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute2Value;
 
     @Column(nullable = true)
@@ -151,10 +152,10 @@ public class Product {
     @Column(nullable = true)
     private Integer attribute2Default;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute3Name;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute3Value;
 
     @Column(nullable = true)
@@ -166,10 +167,10 @@ public class Product {
     @Column(nullable = true)
     private Integer attribute3Default;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute4Name;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute4Value;
 
     @Column(nullable = true)
@@ -181,10 +182,10 @@ public class Product {
     @Column(nullable = true)
     private Integer attribute4Default;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute5Name;
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute5Value;
 
     @Column(nullable = true)
