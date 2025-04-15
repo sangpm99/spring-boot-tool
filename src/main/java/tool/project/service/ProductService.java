@@ -16,4 +16,14 @@ public class ProductService {
     public List<Product> getProducts() {
         return productRepository.getAllProducts();
     }
+
+    public void createProducts(List<Product> products) {
+        for(Product product: products) {
+            productRepository.insertProducts(
+                List.of(product.getName()),
+                List.of(product.getPrice()),
+                List.of(product.getCategory().getId())
+            );
+        }
+    }
 }
