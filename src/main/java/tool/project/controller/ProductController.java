@@ -1,5 +1,6 @@
 package tool.project.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,10 @@ public class ProductController {
     }
 
     @DeleteMapping("/DeleteProduct")
-    public void deleteProducts(@RequestParam List<Long> id) {
-        productService.deleteProducts(id);
+    public void deleteProducts(@RequestParam("id") String idList) {
+        List<Long> ids = Arrays.stream(idList.split(","))
+                .map(Long::parseLong)
+                .toList();
+        productService.deleteProducts(ids);
     }
 }
