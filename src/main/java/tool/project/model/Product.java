@@ -134,8 +134,9 @@ public class Product {
     @Column(nullable = true)
     private Integer attribute1Global;
 
-    @Column(nullable = true)
-    private Integer attribute1Default;
+    @Lob
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
+    private String attribute1Default;
 
     @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute2Name;
@@ -149,8 +150,9 @@ public class Product {
     @Column(nullable = true)
     private Integer attribute2Global;
 
-    @Column(nullable = true)
-    private Integer attribute2Default;
+    @Lob
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
+    private String attribute2Default;
 
     @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute3Name;
@@ -164,8 +166,9 @@ public class Product {
     @Column(nullable = true)
     private Integer attribute3Global;
 
-    @Column(nullable = true)
-    private Integer attribute3Default;
+    @Lob
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
+    private String attribute3Default;
 
     @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute4Name;
@@ -179,8 +182,9 @@ public class Product {
     @Column(nullable = true)
     private Integer attribute4Global;
 
-    @Column(nullable = true)
-    private Integer attribute4Default;
+    @Lob
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
+    private String attribute4Default;
 
     @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String attribute5Name;
@@ -194,8 +198,9 @@ public class Product {
     @Column(nullable = true)
     private Integer attribute5Global;
 
-    @Column(nullable = true)
-    private Integer attribute5Default;
+    @Lob
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
+    private String attribute5Default;
 
     public Product() {}
 
@@ -242,27 +247,27 @@ public class Product {
         String attribute1Value,
         Integer attribute1Visible,
         Integer attribute1Global,
-        Integer attribute1Default,
+        String attribute1Default,
         String attribute2Name,
         String attribute2Value,
         Integer attribute2Visible,
         Integer attribute2Global,
-        Integer attribute2Default,
+        String attribute2Default,
         String attribute3Name,
         String attribute3Value,
         Integer attribute3Visible,
         Integer attribute3Global,
-        Integer attribute3Default,
+        String attribute3Default,
         String attribute4Name,
         String attribute4Value,
         Integer attribute4Visible,
         Integer attribute4Global,
-        Integer attribute4Default,
+        String attribute4Default,
         String attribute5Name,
         String attribute5Value,
         Integer attribute5Visible,
         Integer attribute5Global,
-        Integer attribute5Default
+        String attribute5Default
     ) {
         this.type = type;
         this.sku = sku;
@@ -468,8 +473,8 @@ public class Product {
     public Integer getAttribute1Global() { return attribute1Global; }
     public void setAttribute1Global(Integer attribute1Global) { this.attribute1Global = attribute1Global; }
 
-    public Integer getAttribute1Default() { return attribute1Default; }
-    public void setAttribute1Default(Integer attribute1Default) { this.attribute1Default = attribute1Default; }
+    public String getAttribute1Default() { return attribute1Default; }
+    public void setAttribute1Default(String attribute1Default) { this.attribute1Default = attribute1Default; }
 
     public String getAttribute2Name() { return attribute2Name; }
     public void setAttribute2Name(String attribute2Name) { this.attribute2Name = attribute2Name; }
@@ -483,8 +488,8 @@ public class Product {
     public Integer getAttribute2Global() { return attribute2Global; }
     public void setAttribute2Global(Integer attribute2Global) { this.attribute2Global = attribute2Global; }
 
-    public Integer getAttribute2Default() { return attribute2Default; }
-    public void setAttribute2Default(Integer attribute2Default) { this.attribute2Default = attribute2Default; }
+    public String getAttribute2Default() { return attribute2Default; }
+    public void setAttribute2Default(String attribute2Default) { this.attribute2Default = attribute2Default; }
 
     public String getAttribute3Name() { return attribute3Name; }
     public void setAttribute3Name(String attribute3Name) { this.attribute3Name = attribute3Name; }
@@ -498,8 +503,8 @@ public class Product {
     public Integer getAttribute3Global() { return attribute3Global; }
     public void setAttribute3Global(Integer attribute3Global) { this.attribute3Global = attribute3Global; }
 
-    public Integer getAttribute3Default() { return attribute3Default; }
-    public void setAttribute3Default(Integer attribute3Default) { this.attribute3Default = attribute3Default; }
+    public String getAttribute3Default() { return attribute3Default; }
+    public void setAttribute3Default(String attribute3Default) { this.attribute3Default = attribute3Default; }
 
     public String getAttribute4Name() { return attribute4Name; }
     public void setAttribute4Name(String attribute4Name) { this.attribute4Name = attribute4Name; }
@@ -513,8 +518,8 @@ public class Product {
     public Integer getAttribute4Global() { return attribute4Global; }
     public void setAttribute4Global(Integer attribute4Global) { this.attribute4Global = attribute4Global; }
 
-    public Integer getAttribute4Default() { return attribute4Default; }
-    public void setAttribute4Default(Integer attribute4Default) { this.attribute4Default = attribute4Default; }
+    public String getAttribute4Default() { return attribute4Default; }
+    public void setAttribute4Default(String attribute4Default) { this.attribute4Default = attribute4Default; }
 
     public String getAttribute5Name() { return attribute5Name; }
     public void setAttribute5Name(String attribute5Name) { this.attribute5Name = attribute5Name; }
@@ -528,6 +533,6 @@ public class Product {
     public Integer getAttribute5Global() { return attribute5Global; }
     public void setAttribute5Global(Integer attribute5Global) { this.attribute5Global = attribute5Global; }
 
-    public Integer getAttribute5Default() { return attribute5Default; }
-    public void setAttribute5Default(Integer attribute5Default) { this.attribute5Default = attribute5Default; }
+    public String getAttribute5Default() { return attribute5Default; }
+    public void setAttribute5Default(String attribute5Default) { this.attribute5Default = attribute5Default; }
 }
