@@ -21,4 +21,9 @@ public class CategoryService {
         String slug = formatter.toSlug(category.getName());
         categoryRepository.insertCategory(category.getName(), slug);
     }
+
+    public void updateCategory(Category category) {
+        String slug = formatter.toSlug(category.getName());
+        categoryRepository.updateCategory(category.getId(), category.getName(), slug);
+    }
 }

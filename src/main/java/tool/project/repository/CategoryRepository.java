@@ -18,4 +18,9 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Transactional
     @Query(value = "INSERT INTO categories (name, slug) values (:name, :slug)", nativeQuery = true)
     void insertCategory(String name, String slug);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE categories SET name = :name, slug = :slug WHERE id = :id", nativeQuery = true)
+    void updateCategory(Long id, String name, String slug);
 }
