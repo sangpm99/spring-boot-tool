@@ -26,4 +26,8 @@ public class CategoryService {
         String slug = formatter.toSlug(category.getName());
         categoryRepository.updateCategory(category.getId(), category.getName(), slug);
     }
+
+    public void deleteCategory(Long id) {
+        categoryRepository.deleteCategoryById(id);
+    }
 }

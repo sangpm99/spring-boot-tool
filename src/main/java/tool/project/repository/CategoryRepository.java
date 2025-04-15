@@ -23,4 +23,9 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Transactional
     @Query(value = "UPDATE categories SET name = :name, slug = :slug WHERE id = :id", nativeQuery = true)
     void updateCategory(Long id, String name, String slug);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM categories WHERE id = :id", nativeQuery = true)
+    void deleteCategoryById(Long id);
 }
