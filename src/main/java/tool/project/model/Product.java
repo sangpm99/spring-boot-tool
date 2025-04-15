@@ -1,5 +1,8 @@
 package tool.project.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -75,15 +78,21 @@ public class Product {
     @Column(nullable = true, columnDefinition = "LONGTEXT")
     private String purchaseNote;
     
+    
     @Column(nullable = true)
     private Double salePrice;
 
     @Column(nullable = true)
     private Double regularPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = true)
-    private Category category;
+    @ManyToMany
+    @JoinTable(
+        name = "product_categories",
+        joinColumns = @JoinColumn(name = "product_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories = new ArrayList<>();
+
 
     @Column(nullable = true)
     private String tags;
@@ -230,7 +239,7 @@ public class Product {
         String purchaseNote,
         Double salePrice,
         Double regularPrice,
-        Category category,
+        List<Category> categories,
         String tags,
         String shippingClass,
         String images,
@@ -294,7 +303,7 @@ public class Product {
         this.purchaseNote = purchaseNote;
         this.salePrice = salePrice;
         this.regularPrice = regularPrice;
-        this.category = category;
+        this.categories = categories;
         this.tags = tags;
         this.shippingClass = shippingClass;
         this.images = images;
@@ -418,8 +427,8 @@ public class Product {
         this.regularPrice = regularPrice;
     }
 
-    public Category getCategory() { return category; }
-    public void setCategory(Category category) { this.category = category; }
+    public List<Category> getCategories() { return categories; }
+    public void setCategories(List<Category> categories) { this.categories = categories; }
 
     public String getTags() { return tags; }
     public void setTags(String tags) { this.tags = tags; }

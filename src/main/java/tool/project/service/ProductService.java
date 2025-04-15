@@ -93,7 +93,7 @@ public class ProductService {
             existingProduct.setPurchaseNote(updatedProduct.getPurchaseNote());
             existingProduct.setSalePrice(updatedProduct.getSalePrice());
             existingProduct.setRegularPrice(updatedProduct.getRegularPrice());
-            existingProduct.setCategory(updatedProduct.getCategory());
+            existingProduct.setCategories(updatedProduct.getCategories());
             existingProduct.setTags(updatedProduct.getTags());
             existingProduct.setShippingClass(updatedProduct.getShippingClass());
             existingProduct.setImages(updatedProduct.getImages());

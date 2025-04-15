@@ -25,16 +25,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT COUNT(*) FROM products WHERE name LIKE %:search%", nativeQuery = true)
     int countByName(@Param("search") String search);
 
-    @Query(value = "SELECT * FROM products WHERE category_id = :categoryId LIMIT :limit OFFSET :offset", nativeQuery = true)
+    @Query(value = "SELECT p.* FROM products p JOIN product_category pc ON p.id = pc.product_id WHERE pc.category_id = :categoryId LIMIT :limit OFFSET :offset", nativeQuery = true)
     List<Product> searchByCategory(@Param("categoryId") Long categoryId, @Param("limit") int limit, @Param("offset") int offset);
 
-    @Query(value = "SELECT COUNT(*) FROM products WHERE category_id = :categoryId", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM products p JOIN product_category pc ON p.id = pc.product_id WHERE pc.category_id = :categoryId", nativeQuery = true)
     int countByCategory(@Param("categoryId") Long categoryId);
 
-    @Query(value = "SELECT * FROM products WHERE name LIKE %:search% AND category_id = :categoryId LIMIT :limit OFFSET :offset", nativeQuery = true)
+    @Query(value = "SELECT p.* FROM products p JOIN product_category pc ON p.id = pc.product_id WHERE p.name LIKE %:search% AND pc.category_id = :categoryId LIMIT :limit OFFSET :offset", nativeQuery = true)
     List<Product> searchByNameAndCategory(@Param("search") String search, @Param("categoryId") Long categoryId, @Param("limit") int limit, @Param("offset") int offset);
 
-    @Query(value = "SELECT COUNT(*) FROM products WHERE name LIKE %:search% AND category_id = :categoryId", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM products p JOIN product_category pc ON p.id = pc.product_id WHERE p.name LIKE %:search% AND pc.category_id = :categoryId", nativeQuery = true)
     int countByNameAndCategory(@Param("search") String search, @Param("categoryId") Long categoryId);
-
 }
