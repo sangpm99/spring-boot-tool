@@ -2,6 +2,7 @@ package tool.project.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,9 +27,15 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/GetProducts")
-    public List<Product> getProducts() {
-        return productService.getProducts();
+    public Map<String, Object> getProducts(
+            @RequestParam(defaultValue = "1") int pageIndex,
+            @RequestParam(defaultValue = "20") int pageSize,
+            @RequestParam(required = false) String searchValue,
+            @RequestParam(required = false) Long categoryId
+    ) {
+        return productService.getProducts(pageIndex, pageSize, searchValue, categoryId);
     }
+
 
     @PostMapping("/CreateProducts")
     public void createProducts(@RequestBody List<Product> products) {

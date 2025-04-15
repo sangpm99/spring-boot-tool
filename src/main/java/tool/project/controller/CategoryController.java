@@ -1,6 +1,7 @@
 package tool.project.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import tool.project.service.CategoryService;
@@ -24,8 +26,12 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/GetCategories")
-    public List<Category> getCategories() {
-        return categoryService.getCategories();
+    public Map<String, Object> getCategories(
+            @RequestParam(defaultValue = "1") int pageIndex,
+            @RequestParam(defaultValue = "20") int pageSize,
+            @RequestParam(required = false) String searchValue
+    ) {
+        return categoryService.getCategories(pageIndex, pageSize, searchValue);
     }
 
     @PostMapping("/CreateCategory")
