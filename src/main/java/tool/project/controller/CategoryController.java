@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import tool.project.service.CategoryService;
 import tool.project.model.Category;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/Category")
-@CrossOrigin
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
