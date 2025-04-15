@@ -46,8 +46,22 @@ public class ProductService {
 
 
     public void createProducts(List<Product> products) {
-        for (Product p : products) {
-            productRepository.save(p);
+        Product currentVariable = null;
+
+        for (Product product : products) {
+            if ("variable".equalsIgnoreCase(product.getType())) {
+            // Lưu bản ghi variable và nhớ ID
+            productRepository.save(product);
+            currentVariable = product; // bản ghi variable gần nhất
+        } else if ("variation".equalsIgnoreCase(product.getType())) {
+            if (currentVariable != null) {
+                product.setParent("id:" + currentVariable.getId());
+            }
+            productRepository.save(product);
+        } else {
+            // Kiểu khác thì cứ save như thường
+            productRepository.save(product);
+        }
         }
     }
 
