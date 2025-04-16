@@ -54,4 +54,14 @@ public class ProductController {
                 .toList();
         productService.deleteProducts(ids);
     }
+
+    @GetMapping("/ExportProduct")
+    public List<Product> exportProducts(
+            @RequestParam(required = false) Integer quantity,
+            @RequestParam(required = false) Long categoryId,
+            @RequestParam(defaultValue = "false") boolean random
+    ) {
+        return productService.exportProducts(quantity, categoryId, random);
+    }
+
 }

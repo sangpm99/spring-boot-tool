@@ -138,4 +138,13 @@ public class ProductService {
     public void deleteProducts(List<Long> ids) {
         productRepository.deleteAllById(ids);
     }
+
+    public List<Product> exportProducts(Integer quantity, Long categoryId, boolean random) {
+        if (categoryId != null && quantity != null && random) {
+            return productRepository.getRandomVariableAndVariationsByCategory(categoryId, quantity);
+        }
+    
+        return productRepository.findAll();
+    }
+    
 }

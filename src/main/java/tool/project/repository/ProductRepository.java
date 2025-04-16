@@ -36,4 +36,37 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "SELECT COUNT(*) FROM products p JOIN products_categories pc ON p.id = pc.product_id WHERE p.name LIKE %:search% AND pc.category_id = :categoryId", nativeQuery = true)
     int countByNameAndCategory(@Param("search") String search, @Param("categoryId") Long categoryId);
+
+    @Query(value = """
+        WITH selected_variables AS (
+            SELECT p.id 
+            FROM products p
+            JOIN products_categories pc ON p.id = pc.product_id
+            WHERE p.type = 'variable' AND pc.category_id = :categoryId
+            ORDER BY RAND()
+            LIMIT :quantity
+        ),
+        all_records AS (
+            SELECT p.*, 
+                CASE 
+                    WHEN p.type = 'variable' THEN p.id 
+                    ELSE SUBSTRING_INDEX(p.parent, ':', -1) 
+                END AS group_id,
+                CASE 
+                    WHEN p.type = 'variable' THEN 0 
+                    ELSE 1 
+                END AS record_order
+            FROM products p
+            WHERE 
+                (p.type = 'variable' AND p.id IN (SELECT id FROM selected_variables))
+                OR
+                (p.type = 'variation' AND p.parent IN (
+                    SELECT CONCAT('id:', id) FROM selected_variables
+                ))
+        )
+        SELECT * 
+        FROM all_records
+        ORDER BY group_id, record_order, id
+    """, nativeQuery = true)
+    List<Product> getRandomVariableAndVariationsByCategory(@Param("categoryId") Long categoryId, @Param("quantity") int quantity);
 }
